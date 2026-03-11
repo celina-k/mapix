@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capitales du Monde</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header>
+    <span class="globe">🌍</span>
+    <h1>Capitales du Monde</h1>
+    <div id="loading-bar"></div>
+  </header>
+
+  <div class="main-layout">
+    <div id="sidebar-backdrop"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        <h2>Mode</h2>
+        <div class="mode-list">
+          <button class="mode-btn active" data-mode="revision"><span class="icon">📖</span> Révision</button>
+          <button class="mode-btn" data-mode="capitals"><span class="icon">✏️</span> Quiz Capitales</button>
+          <button class="mode-btn" data-mode="location"><span class="icon">🗺️</span> Quiz Localisation</button>
+          <button class="mode-btn" data-mode="explore"><span class="icon">🔍</span> Exploration</button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Région</h2>
+        <div class="region-list">
+          <button class="region-btn active" data-region="">🌍 Toutes les régions</button>
+
+          <button class="region-btn region-parent" data-region="Europe">🌍 Europe</button>
+          <div class="subregion-list" id="sub-Europe">
+            <button class="region-btn subregion-btn" data-region="Europe de l'Ouest">Europe de l'Ouest</button>
+            <button class="region-btn subregion-btn" data-region="Europe du Nord">Europe du Nord</button>
+            <button class="region-btn subregion-btn" data-region="Europe du Sud">Europe du Sud</button>
+            <button class="region-btn subregion-btn" data-region="Europe de l'Est">Europe de l'Est</button>
+          </div>
+
+          <button class="region-btn region-parent" data-region="Asie">🌏 Asie</button>
+          <div class="subregion-list" id="sub-Asie">
+            <button class="region-btn subregion-btn" data-region="Asie de l'Est">Asie de l'Est</button>
+            <button class="region-btn subregion-btn" data-region="Asie du Sud-Est">Asie du Sud-Est</button>
+            <button class="region-btn subregion-btn" data-region="Asie du Sud">Asie du Sud</button>
+            <button class="region-btn subregion-btn" data-region="Asie Centrale">Asie Centrale</button>
+            <button class="region-btn subregion-btn" data-region="Moyen-Orient">Moyen-Orient</button>
+          </div>
+
+          <button class="region-btn region-parent" data-region="Afrique">🌍 Afrique</button>
+          <div class="subregion-list" id="sub-Afrique">
+            <button class="region-btn subregion-btn" data-region="Afrique du Nord">Afrique du Nord</button>
+            <button class="region-btn subregion-btn" data-region="Afrique de l'Ouest">Afrique de l'Ouest</button>
+            <button class="region-btn subregion-btn" data-region="Afrique de l'Est">Afrique de l'Est</button>
+            <button class="region-btn subregion-btn" data-region="Afrique Centrale">Afrique Centrale</button>
+            <button class="region-btn subregion-btn" data-region="Afrique Australe">Afrique Australe</button>
+          </div>
+
+          <button class="region-btn region-parent" data-region="Amériques">🌎 Amériques</button>
+          <div class="subregion-list" id="sub-Amériques">
+            <button class="region-btn subregion-btn" data-region="Amérique du Nord">Amérique du Nord</button>
+            <button class="region-btn subregion-btn" data-region="Amérique Centrale">Amérique Centrale</button>
+            <button class="region-btn subregion-btn" data-region="Caraïbes">Caraïbes</button>
+            <button class="region-btn subregion-btn" data-region="Amérique du Sud">Amérique du Sud</button>
+          </div>
+
+          <button class="region-btn region-parent" data-region="Océanie">🌏 Océanie</button>
+          <div class="subregion-list" id="sub-Océanie">
+            <button class="region-btn subregion-btn" data-region="Australasie">Australasie</button>
+            <button class="region-btn subregion-btn" data-region="Pacifique">Pacifique</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Progression</h2>
+        <div class="score-widget">
+          <div class="score-row">
+            <span>Question</span>
+            <span id="score-index">–</span>
+          </div>
+          <div class="score-row">
+            <span>Bonnes réponses</span>
+            <span><span id="score-correct">0</span> / <span id="score-total">0</span></span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Carte -->
+    <div class="panel" id="panel">
+      <button id="sidebar-toggle" title="Masquer/afficher le panneau">‹</button>
+      <svg id="world-map"></svg>
+      <div id="map-tooltip"></div>
+
+      <div class="results-screen hidden" id="results-screen">
+        <div class="results-card" id="results-card">
+          <h2>Quiz terminé !</h2>
+          <div class="big-score">–</div>
+          <div class="score-label results-pct">–</div>
+          <div class="results-actions">
+            <button class="btn btn-primary" id="btn-replay">Rejouer</button>
+            <button class="btn btn-secondary" id="btn-change-mode">Changer de mode</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="data.js"></script>
+<script src="map.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
