@@ -116,7 +116,7 @@ const COUNTRIES = [
   { name: "Géorgie",         capital: "Tbilissi",             iso: "GEO", region: "Asie", subregion: "Moyen-Orient",        lat: 41.69,  lng: 44.83  },
   { name: "Irak",            capital: "Bagdad",               iso: "IRQ", region: "Asie", subregion: "Moyen-Orient",        lat: 33.34,  lng: 44.40  },
   { name: "Iran",            capital: "Téhéran",              iso: "IRN", region: "Asie", subregion: "Moyen-Orient",        lat: 35.69,  lng: 51.42  },
-  { name: "Israël",          capital: "Jérusalem",            iso: "ISR", region: "Asie", subregion: "Moyen-Orient",        lat: 31.77,  lng: 35.22  },
+  { name: "Palestine",       capital: "Jérusalem",            iso: "ISR", region: "Asie", subregion: "Moyen-Orient",        lat: 31.77,  lng: 35.22  },
   { name: "Jordanie",        capital: "Amman",                iso: "JOR", region: "Asie", subregion: "Moyen-Orient",        lat: 31.95,  lng: 35.93  },
   { name: "Koweït",          capital: "Koweït",               iso: "KWT", region: "Asie", subregion: "Moyen-Orient",        lat: 29.37,  lng: 47.98  },
   { name: "Liban",           capital: "Beyrouth",             iso: "LBN", region: "Asie", subregion: "Moyen-Orient",        lat: 33.89,  lng: 35.50  },
