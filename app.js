@@ -259,10 +259,14 @@ const QuizLocation = {
     const c = State.current;
     MapD3.resetStyles();
 
-    // Zoom sur la région sélectionnée (ou monde entier)
-    const parentRegion = State.region ? getParentRegion(State.region) : null;
-    if (parentRegion) MapD3.zoomToRegion(parentRegion);
-    else MapD3.zoomToWorld();
+    // Zoom sur la région sélectionnée à la première question, léger dézoom ensuite
+    if (State.index === 0) {
+      const parentRegion = State.region ? getParentRegion(State.region) : null;
+      if (parentRegion) MapD3.zoomToRegion(parentRegion);
+      else MapD3.zoomToWorld();
+    } else {
+      MapD3.zoomOutSlightly();
+    }
 
     let overlay = document.getElementById("quiz-loc-overlay");
     if (!overlay) {

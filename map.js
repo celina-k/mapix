@@ -209,6 +209,17 @@ const MapD3 = (() => {
     _zoom(d3.zoomIdentity, animate);
   }
 
+  function zoomOutSlightly(factor = 1.8, animate = true) {
+    const t = d3.zoomTransform(svgEl);
+    const newScale = Math.max(0.8, t.k / factor);
+    const W = svgEl.clientWidth, H = svgEl.clientHeight;
+    const cx = W / 2, cy = H / 2;
+    // zoom out centré sur le centre de l'écran
+    const newX = cx - (cx - t.x) / t.k * newScale;
+    const newY = cy - (cy - t.y) / t.k * newScale;
+    _zoom(d3.zoomIdentity.translate(newX, newY).scale(newScale), animate);
+  }
+
   function _zoom(t, animate) {
     if (animate)
       svg.transition().duration(600).ease(d3.easeCubicInOut).call(zoomBehavior.transform, t);
@@ -242,5 +253,5 @@ const MapD3 = (() => {
     g.selectAll('path').attr('d', pathGen);
   }
 
-  return { init, highlightCountry, resetStyles, applyRegionFilter, zoomToCountry, zoomToRegion, zoomToWorld, enableClick, disableClick, setTooltip, enableTooltip, disableTooltip, resize };
+  return { init, highlightCountry, resetStyles, applyRegionFilter, zoomToCountry, zoomToRegion, zoomToWorld, zoomOutSlightly, enableClick, disableClick, setTooltip, enableTooltip, disableTooltip, resize };
 })();
